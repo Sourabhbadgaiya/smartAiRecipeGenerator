@@ -30,9 +30,9 @@ export const Login = async (req, res, next) => {
   .status(200)
   .cookie("token", token, {
     expires: new Date(Date.now() + 3 * 60 * 60 * 1000),
-    httpOnly: true, // Secure ke saath httpOnly ko true rakho
-   secure: false, // ✅ Localhost ke liye false
-    sameSite: "Lax", // ✅ None ki jagah Lax try karo
+      httpOnly: true,
+      secure: config.NODE_ENV === "production", // Secure in production
+      sameSite: "none", // Protects against CSRF attacks
     })
   .json({
     success: true,
