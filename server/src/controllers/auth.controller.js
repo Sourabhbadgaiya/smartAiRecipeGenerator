@@ -26,19 +26,18 @@ export const Login = async (req, res, next) => {
     // console.log(email, password, name);
     const { existUser, token } = await loginUser({ email, password });
 
-    res
-      .status(200)
-      .cookie("token", token, {
-        expires: new Date(Date.now() + 3 * 60 * 60 * 1000), // 3 hours expiry
-        httpOnly: false,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "Strict",
-      })
-      .json({
-        success: true,
-        message: "User Logged In Successfully",
-        user: existUser,
-      });
+   res
+  .status(200)
+  .cookie("token", token, {
+    expires: new Date(Date.now() + 3 * 60 * 60 * 1000),
+    httpOnly: true, // Secure ke saath httpOnly ko true rakho
+    secure: true, // Production me always true
+    sameSite: "None", // Cross-origin ke liye
+  })
+  .json({
+    success: true,
+    message: "User Logged In Successfully",
+  });
   } catch (error) {
     next(error);
   }
