@@ -31,9 +31,8 @@ export const Login = async (req, res, next) => {
   .cookie("token", token, {
     expires: new Date(Date.now() + 3 * 60 * 60 * 1000),
     httpOnly: true, // Secure ke saath httpOnly ko true rakho
-    secure: false, // Production me always true
-    sameSite: "None", // Cross-origin ke liye
-  })
+   secure: false, // ✅ Localhost ke liye false
+    sameSite: "Lax", // ✅ None ki jagah Lax try karo  })
   .json({
     success: true,
     message: "User Logged In Successfully",
