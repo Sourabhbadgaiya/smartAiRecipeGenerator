@@ -5,7 +5,7 @@ const _config = {
   MONGO_URL: process.env.MONGO_URL,
   JWT_SEC: process.env.JWT_SEC,
   GEMINI_API_KEY: process.env.GEMINI_API_KEY,
-  CLIENT_URL: process.env.CLIENT_URL,zzz
+  CLIENT_URL: process.env.CLIENT_URL,
   NODE_ENV: process.env.NODE_ENV,
 };
 
