@@ -26,20 +26,18 @@ export const Login = async (req, res, next) => {
     // console.log(email, password, name);
     const { existUser, token } = await loginUser({ email, password });
 
-   res
-  .status(200)
+res.status(200)
   .cookie("token", token, {
-  httpOnly: true, 
-  secure: true,  // ✅ Hamesha true rakhna in production
-  sameSite: "None",  // ✅ Cross-origin requests ke liye zaroori
-  path: "/",
-  expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), 
-  partitioned: true, // ✅ Chrome ke new update ke liye required
-})
+    expires: new Date(Date.now() + 3 * 60 * 60 * 1000), // 3 Hours
+    httpOnly: true,  // ✅ JS se access nahi ho sakta (security ke liye)
+    secure: true,  // ✅ HTTPS required (Production ke liye)
+    sameSite: "None",  // ✅ Cross-site requests ke liye zaroori hai!
+  })
   .json({
     success: true,
     message: "User Logged In Successfully",
   });
+
   } catch (error) {
     next(error);
   }
