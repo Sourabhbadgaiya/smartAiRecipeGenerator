@@ -29,10 +29,11 @@ export const Login = async (req, res, next) => {
    res
   .status(200)
   .cookie("token", token, {
-    expires: new Date(Date.now() + 3 * 60 * 60 * 1000),
       httpOnly: true,
-      secure: config.NODE_ENV === "production", // Secure in production
+      secure: "production", // Secure in production
       sameSite: "none", // Protects against CSRF attacks
+      path: "/", // ✅ Har request pe accessible ho
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), 
     })
   .json({
     success: true,
