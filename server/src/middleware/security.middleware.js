@@ -15,7 +15,7 @@ export const securityMiddleware = (app) => {
 
   app.use(
     cors({
-      origin: ["http://localhost:5173"],
+      origin: ["https://recipe-client-delta.vercel.app"],
       credentials: true,
     })
   );
