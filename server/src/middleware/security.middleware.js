@@ -14,8 +14,7 @@ export const securityMiddleware = (app) => {
   );
 
 const allowedOrigins = [
-  "http://localhost:5173", "https://relaxed-bubblegum-13fe63.netlify.app",
-  "https://recipe-client-2ohxtsa3i-sourabhbadgaiya2s-projects.vercel.app",
+  "http://localhost:5173", "https://adorable-smakager-a1b819.netlify.app",
 ];
 
 app.use(
