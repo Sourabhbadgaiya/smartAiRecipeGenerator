@@ -32,7 +32,8 @@ export const Login = async (req, res, next) => {
     expires: new Date(Date.now() + 3 * 60 * 60 * 1000),
     httpOnly: true, // Secure ke saath httpOnly ko true rakho
    secure: false, // ✅ Localhost ke liye false
-    sameSite: "Lax", // ✅ None ki jagah Lax try karo  })
+    sameSite: "Lax", // ✅ None ki jagah Lax try karo
+    })
   .json({
     success: true,
     message: "User Logged In Successfully",
