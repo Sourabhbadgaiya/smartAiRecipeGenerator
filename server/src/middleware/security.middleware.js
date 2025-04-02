@@ -13,12 +13,24 @@ export const securityMiddleware = (app) => {
     })
   );
 
-  app.use(
-    cors({
-      origin: ["https://recipe-client-2ohxtsa3i-sourabhbadgaiya2s-projects.vercel.app"],
-      credentials: true,
-    })
-  );
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://recipe-client-2ohxtsa3i-sourabhbadgaiya2s-projects.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // ✅ Cookies allow karne ke liye zaroori hai
+  })
+);
+
 
   const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, 
